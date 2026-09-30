@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Meu botão</title>
+    <style>
+         :root {
+            --fundo: #fdf5d0;
+            --texto: #000000;
+            --botao: #b680fc;
+            --botao-hover: #b680fc;
+            --botao-texto: #ffffff;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+             :root:not([data-theme="light"]) {
+                --fundo: #ecf8d9;
+                --texto: #000000;
+                --botao: #5cc2d6;
+                --botao-hover: #82d3e3;
+                --botao-texto: #0d1a1c;
+            }
+        }
+        
+         :root[data-theme="dark"] {
+            --fundo: #fdf5d0;
+            --texto: #000000;
+            --botao: #5cc2d6;
+            --botao-hover: #82d3e3;
+            --botao-texto: #0d1a1c;
+        }
+        
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+        
+        body {
+            background: var(--fundo);
+            color: var(--texto);
+            font-family: Georgia, "Times New Roman", serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        
+        .imagem {
+            width: min(320px, 100%);
+            height: auto;
+            border-radius: 1rem;
+            display: block;
+        }
+        
+        .botoes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .botao.secundario {
+            background: transparent;
+            color: var(--botao);
+            box-shadow: inset 0 0 0 2px var(--botao);
+        }
+        
+        .botao.secundario:hover {
+            background: var(--botao);
+            color: var(--botao-texto);
+        }
+        
+        .texto-pequeno {
+            font-size: 0.9rem;
+            opacity: 0.75;
+            margin: 0;
+            max-width: 34ch;
+        }
+        
+        .texto {
+            font-size: clamp(1.4rem, 4vw, 2.2rem);
+            max-width: 22ch;
+            line-height: 1.25;
+            margin: 0;
+            font-weight: 700;
+        }
+        
+        .botao {
+            font: 600 1.1rem system-ui, sans-serif;
+            background: var(--botao);
+            color: var(--botao-texto);
+            border: 0;
+            border-radius: 999px;
+            padding: 0.9rem 2.2rem;
+            cursor: pointer;
+            transition: background 0.15s, transform 0.1s;
+        }
+        
+        .botao:hover {
+            background: var(--botao-hover);
+        }
+        
+        .botao:active {
+            transform: scale(0.97);
+        }
+        
+        .botao:focus-visible {
+            outline: 3px solid var(--texto);
+            outline-offset: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Para trocar a imagem, altere o src (ex.: src="foto.jpg") -->
+    <img class="imagem" alt="Imagem de um pato" src="pato.jpg">
+
+    <p class="texto">Preparada para essa?</p>
+
+    <div class="botoes">
+        <button class="botao" data-link="surpresa.html">Clique aqui</button>
+    </div>
+
+    <p class="texto-pequeno">Clica no botão acima!</p>
+
+    <script>
+        // Cada botão com a classe "botao" é configurado pelos atributos data-*
+        document.querySelectorAll('.botao').forEach(function(botao) {
+            botao.addEventListener('click', function() {
+                var link = botao.dataset.link;
+                var mensagem = botao.dataset.mensagem;
+                if (mensagem) alert(mensagem);
+                if (link) window.location.href = link;
+            });
+        });
+    </script>
+</body>
+
+</html>
